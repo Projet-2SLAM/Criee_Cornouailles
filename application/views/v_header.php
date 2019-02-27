@@ -1,6 +1,6 @@
 <HTML>
 <HEADER>
-	<TITLE>La Criée des Cornouailllles</TITLE>
+	<TITLE>La Criée des Cornouailles</TITLE>
 	<meta charset="utf-8">
 	<link href="<?php echo base_url('style/style.css');?>" rel="stylesheet">
 </HEADER>
