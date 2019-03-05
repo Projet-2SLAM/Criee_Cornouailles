@@ -26,8 +26,8 @@
             
             echo form_input($mdp);
             echo'<br/><br/>';
-        
-            echo form_submit('envoyer', 'Envoyer');
-            echo form_close();
-?>
+?>      
+        <input type="submit" class="btn btn-info" value="Valider" />
+        </form>
+
 </div>

@@ -112,7 +112,7 @@ class Form extends CI_Controller
 
 
 				$this->session->set_userdata($newdata);
-				$this->load->view('v_connecte');
+				redirect('');
 
 			}
 
@@ -137,9 +137,10 @@ class Form extends CI_Controller
 			$this->form_validation->set_rules('prixPlancher', 			'prixPlancher', 		'required');
 			$this->form_validation->set_rules('prixDepart', 			'prixDepart', 			'required');
 			$this->form_validation->set_rules('immatBateau', 			'immatBateau', 			'required');
-			$this->form_validation->set_rules('idTaille', 				'idTaille', 			'required');
 			$this->form_validation->set_rules('tailleIntermediaire', 	'tailleIntermediaire', 	'required');
+			$this->form_validation->set_rules('idTaille', 				'idTaille', 			'required');
 			$this->form_validation->set_rules('intituleQualite', 		'intituleQualite', 		'required');
+			//$this->form_validation->set_rules('nomComEspece', 			'nomComEspece', 		'required');
 			$this->form_validation->set_rules('codeEtat', 				'codeEtat');
 
 
@@ -162,8 +163,9 @@ class Form extends CI_Controller
 					'prixDepart'=> 			$this->input->post('prixDepart'),
 					'codeEtat'=>			$this->input->post('codeEtat'),
 					'idBateau'=> 			intval($this->input->post('immatBateau')),
-					'idTaille'=> 			intval($this->input->post('idTaille')),
 					'idTailleIntermediaire'=> intval($this->input->post('tailleIntermediaire')),
+					'idTaille'=> 			intval($this->input->post('idTaille')),
+					//'idEspece'=>			intval($this->input->post('nomComEspece')),
 					'idQualite'=> 			intval($this->input->post('intituleQualite')),
 
 				);	

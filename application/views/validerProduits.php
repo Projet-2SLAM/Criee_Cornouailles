@@ -1,5 +1,3 @@
-<link href="<?php echo base_url('style/style.css');?>" rel="stylesheet">
-
 <?php 
 
 	if (isset($message))
@@ -14,7 +12,7 @@
 		echo "<table>
 	     	<tr>
 
-				<th>idLot</th>
+				<th>Numéro de lot</th>
 		        <th>Immatriculation bateau</th>
 		        <th>Date de pêche</th>
 		        <th>Poids brut</th>
@@ -24,7 +22,6 @@
 		        <th>dateEnchere</th>
 		        <th>codeEtat</th>
 		        <th>idPresentation</th>
-		        <th>Acheteur</th>
 		        <th>Qualité</th>
 		        <th>Taille</th>
 		        <th>Taille intermédiaire</th>
@@ -37,16 +34,16 @@
 	     	if ($req['codeEtat']=="NC")		//NC = Non Confirmé, l'administrateur n'a pas confirmé le lot, donc les utilisateurs ne le verront pas apparaître pour enchérir dessus
 			{
 		     	echo '<tr>';
-		     	for($i=0;$i<=14;$i++)
+		     	for($i=0;$i<=13;$i++)
 		     	{
-		     		if ($i<14)
+		     		if ($i<13)
 		     		{
 					  	echo '<td>';
 							echo $req[$i];
 					  	echo '</td>';
 		     		}
 
-		     		else if ($i==14)
+		     		else if ($i==13)
 		     		{
 		     			echo validation_errors(); 
 						echo form_open('form/validerProduits');

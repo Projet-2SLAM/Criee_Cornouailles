@@ -1,5 +1,5 @@
 <?php
 
-	echo "Page d'accueil";
+	//echo "Page d'accueil";
 
 ?>

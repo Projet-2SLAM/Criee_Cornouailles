@@ -2,8 +2,15 @@ USE LaCriee;
 
 
 INSERT INTO ESPECE(nomScienEspece, nomComEspece) VALUES
-        ("Gadus morhua", "Morue de l'atlantique"),
-        ("Salmo salar", "Saumon Atlantique");
+        ("Sepia officinalis", "Seiche"),
+        ("Pollachius pollachius", "Lieu jaune"),
+        ("Gadus morhua", "Morue"),
+        ("Merlangius merlangus", "Merlan"),
+        ("Nephrops norvegicus", "Langoustine"),
+        ("Leucoraja naevus", "Raie fleurie"),
+        ("Merluccius merluccius", "Merlu"),
+        ("Melanogrammus aeglefinus", "Aiglefin"),
+        ("Lophius piscatorius", "Baudroie");
 
 INSERT INTO TAILLE(taille) VALUES
         (1),

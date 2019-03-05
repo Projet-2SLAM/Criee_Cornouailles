@@ -79,11 +79,8 @@ class Welcome extends CI_Controller 	//Contrôleur par défaut qui sera utilisé
 	    {	
 	    	echo "Vous êtes connecté en tant que ".'<b>'.$testUserConnected.'</b>';
 	    }
-	        
-		switch ($id)
-		{
-			case 'produits':
-			$this->load->model('Main_model');
+
+	    $this->load->model('Main_model');
 			$verifPecheOrganiseeAujourdhui = $this->Main_model->verifPecheOrganiseeAujourdhui();	//On vérifie si une pêche est organisée pour aujourd'hui
 			$verification;
 			if($donnees=$verifPecheOrganiseeAujourdhui->fetch())		//On récupère le nombre de bateaux associés à la pêche du jour
@@ -106,6 +103,10 @@ class Welcome extends CI_Controller 	//Contrôleur par défaut qui sera utilisé
 				}
 				//var_dump($donnees);
 			}
+	        
+		switch ($id)
+		{
+			case 'produits':
 
 			if ($verification == true)	//Si une pêche est organisée, on permet à l'utilisateur de saisir un produit
 			{
@@ -118,40 +119,58 @@ class Welcome extends CI_Controller 	//Contrôleur par défaut qui sera utilisé
 					$this->load->model('Main_model');
 					$bateau = $this->Main_model->bateauAssocie();
 
-					$immatBateau=array(
+					$immatBateau=array
+					(
 						'immatBateau' => $bateau
 					);
 
 
-					$this->load->model('Main_model');
 					$listeTaille = $this->Main_model->listeTaille();
 
-					$taille=array(
+					$taille=array
+					(
 						'taille' => $listeTaille
 					);
 
 
-					$this->load->model('Main_model');
 					$listeTailleIntermediaire = $this->Main_model->listeTailleIntermediaire();
 
-					$tailleIntermediaire=array(
+					$tailleIntermediaire=array
+					(
 						'tailleIntermediaire' => $listeTailleIntermediaire
 					);
 
 
-					$this->load->model('Main_model');
 					$listeQualite = $this->Main_model->listeQualite();
 
-					$qualite=array(
+					$qualite=array
+					(
 						'qualite' => $listeQualite
 					);
 
+
+					$listeEspece = $this->Main_model->listeEspece();
+
+					$espece=array
+					(
+						'espece' => $listeEspece
+					);
+
+
+					$listePresentation = $this->Main_model->listePresentation();
+
+					$presentation=array
+					(
+						'presentation' => $listePresentation
+					);
 
 
 					$elements['immatBateau']=$immatBateau;
 					$elements['taille']=$taille;
 					$elements['tailleIntermediaire']=$tailleIntermediaire;
 					$elements['qualite']=$qualite;
+					$elements['espece']=$espece;
+					$elements['presentation']=$presentation;
 
 					//---------------------------------------------------------------------------------
 
@@ -239,19 +258,46 @@ class Welcome extends CI_Controller 	//Contrôleur par défaut qui sera utilisé
 
 			case 'organiserPeche':
 				$this->load->model('Main_model');
-				$bateau = $this->Main_model->bateauAssocie();
+				$verifPecheDejaOrganisee = $this->Main_model->recupInfosPecheDuJour();
 
-				$immatBateau=array
-				(
-					'immatBateau' => $bateau
-				);
+				$data = $verifPecheDejaOrganisee -> fetchAll();		//On affecte toutes les valeurs de la requête à la variable $data;
 
-				$this->load->view('v_organiserPeche', $immatBateau);
+				$validation=false;
+				$dateDuJour = strftime('%d %m %Y');
+
+				foreach ($data as $donnees)
+				{
+					if ($donnees['datePeche'] == $dateDuJour)
+					{
+						$validation = true;
+					}
+				}
+
+				if ($validation == false)
+				{
+					$bateau = $this->Main_model->bateauAssocie();
+
+					$immatBateau=array
+					(
+						'immatBateau' => $bateau
+					);
+
+					$this->load->view('v_organiserPeche', $immatBateau);
+				}
+
+				else
+				{
+					$pourOrganiserPeche=array
+					(
+						'data' => $data
+					);
+					$this->load->view('v_organiserPeche', $pourOrganiserPeche);
+				}
 			break;
 
 			case 'pecheConfirmee':
 				$this->load->model('Main_model');
-				$bateauxParticipants = $this->Main_model->recupBateauxParticipants();
+				$bateauxParticipants = $this->Main_model->recupInfosPecheDuJour();
 
 				$listeBateauxParticipants=array
 				(

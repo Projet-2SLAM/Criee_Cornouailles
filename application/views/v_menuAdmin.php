@@ -1,4 +1,3 @@
-<link href="<?php echo base_url('style/style.css');?>" rel="stylesheet">
 <nav id="mainMenu">
 	<ul>
 		<li><a class="lienMenu" href="<?php echo site_url();?>"> 									Accueil 	</a></li>
@@ -12,6 +11,6 @@
 
 <?php
 
-	echo "Menu admin";
+	//echo "Menu admin";
 
 ?>

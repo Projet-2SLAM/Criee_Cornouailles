@@ -1,0 +1,1 @@
+<h1 style="text-align: center">Retouvez ici l'ensemble des enchères que vous avez remportées</h1>

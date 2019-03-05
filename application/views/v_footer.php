@@ -1,5 +1,5 @@
 <?php
 
-	echo "Footer";
+	//echo "Footer";
 
 ?>

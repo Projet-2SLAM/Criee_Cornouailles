@@ -26,7 +26,7 @@ class Main_model extends CI_Model
 	function produitsAValider()
 	{
 		$this->load->database();
-		$sql = $this->db->conn_id->prepare("SELECT idLot,immatBateau,datePeche,poidsBrutLot,prixPlancher,prixDepart,prixEnchereMax,dateEnchere,codeEtat,idPresentation,idAcheteur,intituleQualite,idTaille,idTailleIntermediaire FROM LOT, BATEAU, QUALITE WHERE LOT.idBateau= BATEAU.idBateau AND LOT.idQualite=QUALITE.idQualite AND codeEtat='NC'");
+		$sql = $this->db->conn_id->prepare("SELECT idLot,immatBateau,datePeche,poidsBrutLot,prixPlancher,prixDepart,prixEnchereMax,dateEnchere,codeEtat,idPresentation,intituleQualite,idTaille,idTailleIntermediaire FROM LOT, BATEAU, QUALITE WHERE LOT.idBateau= BATEAU.idBateau AND LOT.idQualite=QUALITE.idQualite AND codeEtat='NC'");
 		$sql->execute();
 		$donnees = $sql;
 		return $donnees;
@@ -127,6 +127,24 @@ class Main_model extends CI_Model
 		return $qualite;
 	}
 
+	function listeEspece()
+	{
+		$this->load->database();
+		$sql = $this->db->conn_id->prepare ("SELECT nomComEspece FROM ESPECE");
+		$sql->execute();
+        $espece=$sql;
+		return $espece;
+	}
+
+	function listePresentation()
+	{
+		$this->load->database();
+		$sql = $this->db->conn_id->prepare ("SELECT intitulePresentation FROM PRESENTATION");
+		$sql->execute();
+        $presentation=$sql;
+		return $presentation;		
+	}
+
 	function idLotNC()
 	{
 		$this->load->database();
@@ -169,11 +187,11 @@ class Main_model extends CI_Model
 		return $bateau;
 	}
 
-	function recupBateauxParticipants()
+	function recupInfosPecheDuJour()
 	{
 		$this->load->database();
 		$dateDuJour = strftime('%d %m %Y');
-		$sql = $this->db->conn_id->prepare("SELECT immatBateau FROM BATEAU, PECHE WHERE BATEAU.idBateau = PECHE.idBateau AND PECHE.datePeche = '$dateDuJour' ");
+		$sql = $this->db->conn_id->prepare("SELECT datePeche, immatBateau FROM PECHE, BATEAU WHERE PECHE.idBateau = BATEAU.idBateau AND PECHE.datePeche = '$dateDuJour' ");
 		$sql->execute();
 		$bateauxParticipants = $sql;
 		return $bateauxParticipants;

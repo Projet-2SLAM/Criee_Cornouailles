@@ -1,7 +1,6 @@
-<link href="<?php echo base_url('style/style.css');?>" rel="stylesheet">
 <?php 
 	
-	if ($message != "")
+	if (isset($message))
 	{
 		echo "<h1 style='text-align:center'>".$message."</h1>";
 	}
