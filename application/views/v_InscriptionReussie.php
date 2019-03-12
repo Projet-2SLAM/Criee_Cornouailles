@@ -4,5 +4,5 @@
 	
 	<!--<img src="<?php //echo base_url('images/loading.gif');?>" height="50px" width="50px"> </br>-->
 <?php
-	header("refresh:2.5;url=Welcome/redirect/connexion");
+	header("refresh:2;url=Welcome/redirect/connexion");
 ?>

@@ -174,7 +174,7 @@ class Welcome extends CI_Controller 	//Contrôleur par défaut qui sera utilisé
 
 					//---------------------------------------------------------------------------------
 
-					$this->load->view('v_adminProduits', $elements);
+					$this->load->view('v_ajouterLot', $elements);
 				}
 
 
@@ -193,16 +193,15 @@ class Welcome extends CI_Controller 	//Contrôleur par défaut qui sera utilisé
 					if ($verification == true)
 					{
 						$data=array('produitsAValider'=>$rows);
-						$this->load->view('validerProduits', $data);
+						$this->load->view('v_validerLots', $data);
 					}
 
 					else
 					{
-						echo 'ici';
 						$message = array(
 							'message' => "Il n'y a aucun lot en attente d'approbation pour le moment."
 						);
-						$this->load->view('validerProduits', $message);
+						$this->load->view('v_validerLots', $message);
 					}
 				}
 
@@ -253,7 +252,7 @@ class Welcome extends CI_Controller 	//Contrôleur par défaut qui sera utilisé
 			case 'deconnexion':
 				$this->load->library('session');
 				$this->session->sess_destroy();
-				$this->load->view('v_deconnecte');
+				redirect('');
 			break;
 
 			case 'organiserPeche':

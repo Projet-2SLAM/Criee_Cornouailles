@@ -29,13 +29,13 @@ class Form extends CI_Controller
 				else
 				{	
 					$data = array(
-						'login'=> $this->input->post('login'),
-						'password'=> $this->input->post('password'),
-						'RSEntreprise'=> $this->input->post('RSEntreprise'),
-						'numRueAcheteur'=> $this->input->post('numRueAcheteur'),
-						'rueAcheteur'=> $this->input->post('rueAcheteur'),
-						'villeAcheteur'=> $this->input->post('villeAcheteur'),
-						'cpAcheteur'=> $this->input->post('cpAcheteur'),
+						'login'=> 			$this->input->post('login'),
+						'password'=> 		$this->input->post('password'),
+						'RSEntreprise'=> 	$this->input->post('RSEntreprise'),
+						'numRueAcheteur'=> 	$this->input->post('numRueAcheteur'),
+						'rueAcheteur'=> 	$this->input->post('rueAcheteur'),
+						'villeAcheteur'=> 	$this->input->post('villeAcheteur'),
+						'cpAcheteur'=> 		$this->input->post('cpAcheteur'),
 						'numHabilitation'=> $this->input->post('numHabilitation'),
 					);	
 
@@ -58,12 +58,12 @@ class Form extends CI_Controller
 						$this->load->helper('url_helper');
 						$this->load->view('v_header');
 						$this->load->view('v_menu');
-						$this->load->view('v_formSuccess', $data);
+						$this->load->view('v_InscriptionReussie', $data);
 					}
 		 				
 		 			else
 		 			{
-						$this->load->view('v_formFail');
+						$this->load->view('v_InscriptionEchec');
 		 			}
 	 			}         
         }
@@ -140,7 +140,8 @@ class Form extends CI_Controller
 			$this->form_validation->set_rules('tailleIntermediaire', 	'tailleIntermediaire', 	'required');
 			$this->form_validation->set_rules('idTaille', 				'idTaille', 			'required');
 			$this->form_validation->set_rules('intituleQualite', 		'intituleQualite', 		'required');
-			//$this->form_validation->set_rules('nomComEspece', 			'nomComEspece', 		'required');
+			$this->form_validation->set_rules('nomComEspece', 			'nomComEspece', 		'required');
+			$this->form_validation->set_rules('intitulePresentation', 	'intitulePresentation', 'required');
 			$this->form_validation->set_rules('codeEtat', 				'codeEtat');
 
 
@@ -165,20 +166,21 @@ class Form extends CI_Controller
 					'idBateau'=> 			intval($this->input->post('immatBateau')),
 					'idTailleIntermediaire'=> intval($this->input->post('tailleIntermediaire')),
 					'idTaille'=> 			intval($this->input->post('idTaille')),
-					//'idEspece'=>			intval($this->input->post('nomComEspece')),
+					'idEspece'=>			intval($this->input->post('nomComEspece')),
+					'idPresentation'=>		intval($this->input->post('intitulePresentation')),
 					'idQualite'=> 			intval($this->input->post('intituleQualite')),
 
 				);	
         	}
 
         	$this->Main_model->nouveauLot($lot);
-        	$this->load->view('confirmationAjout');
+        	redirect('');
         
 		}
 
 //-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-public function validerProduits()
+public function validerLots()
 		{
 			$this->load->helper(array('form', 'url'));
         	$this->load->library('form_validation');
@@ -203,7 +205,7 @@ public function validerProduits()
 				{
 					echo "Lot n°".$req["idLot"]." validé.";
 					$aValider=$req['idLot'];
-					echo "A valider : ".$req['idLot'];
+					//Rajouter deux champs option pour l'heure entre 14 et 18h, et les mettre dans une variable qu'on transmettra ensuite à aValider, donc qui prendra deux paramatres, et qui fera l'update du codeEtat ET de l'heure de début de l'enchère
 					$this->Main_model->aValider($aValider);
 				}
 
@@ -211,7 +213,6 @@ public function validerProduits()
 				{
 					echo "Lot n°".$req["idLot"]." refusé.";		
 					$aRefuser=$req['idLot'];
-					echo "A refuser : ".$req['idLot'];
 					$this->Main_model->aRefuser($aRefuser);
 				}
 

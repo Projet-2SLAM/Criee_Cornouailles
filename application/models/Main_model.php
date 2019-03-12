@@ -26,7 +26,7 @@ class Main_model extends CI_Model
 	function produitsAValider()
 	{
 		$this->load->database();
-		$sql = $this->db->conn_id->prepare("SELECT idLot,immatBateau,datePeche,poidsBrutLot,prixPlancher,prixDepart,prixEnchereMax,dateEnchere,codeEtat,idPresentation,intituleQualite,idTaille,idTailleIntermediaire FROM LOT, BATEAU, QUALITE WHERE LOT.idBateau= BATEAU.idBateau AND LOT.idQualite=QUALITE.idQualite AND codeEtat='NC'");
+		$sql = $this->db->conn_id->prepare("SELECT idLot,immatBateau,datePeche,poidsBrutLot,prixDepart,prixPlancher,nomComEspece,dateEnchere,intitulePresentation,intituleQualite,idTaille,idTailleIntermediaire,codeEtat FROM LOT, BATEAU, QUALITE, ESPECE, PRESENTATION WHERE LOT.idBateau=BATEAU.idBateau AND LOT.idQualite=QUALITE.idQualite AND LOT.idEspece=ESPECE.idEspece AND LOT.idPresentation=PRESENTATION.idPresentation AND codeEtat='NC'");
 		$sql->execute();
 		$donnees = $sql;
 		return $donnees;
@@ -35,7 +35,7 @@ class Main_model extends CI_Model
 	function lotsConfirmes()
 	{
 		$this->load->database();
-		$sql = $this->db->conn_id->prepare("SELECT idLot,immatBateau,datePeche,poidsBrutLot,prixPlancher,prixDepart,prixEnchereMax,dateEnchere,codeEtat,idPresentation,idAcheteur,intituleQualite,idTaille,idTailleIntermediaire FROM LOT, BATEAU, QUALITE WHERE LOT.idBateau= BATEAU.idBateau AND LOT.idQualite=QUALITE.idQualite AND codeEtat='C'");
+		$sql = $this->db->conn_id->prepare("SELECT idLot,immatBateau,datePeche,poidsBrutLot,prixPlancher,prixDepart,nomComEspece,dateEnchere,codeEtat,intitulePresentation,idAcheteur,intituleQualite,idTaille,idTailleIntermediaire, urlImage FROM LOT, BATEAU, QUALITE, ESPECE, PRESENTATION WHERE LOT.idBateau=BATEAU.idBateau AND LOT.idQualite=QUALITE.idQualite AND LOT.idEspece=ESPECE.idEspece AND LOT.idPresentation=PRESENTATION.idPresentation AND codeEtat='C'");
 		$sql->execute();
 		$donnees = $sql;
 		return $donnees;

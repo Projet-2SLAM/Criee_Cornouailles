@@ -1,13 +1,16 @@
 <?php
 	echo "<div style='margin:auto; width:300px;'>";
 	echo validation_errors(); 
-	echo form_open('form/ajouterProduits'); ?>
-		<input type="hidden" name="codeEtat" value="NC"/>
-		<input type="hidden" 	name="datePeche" value="<?php echo strftime('%d %m %Y'); ?>"/>
-		</br></br><label for="poidsBrutLot">Poids brut</label>		<input style='float:right;' type="text" 	name="poidsBrutLot"/>
-		</br></br><label for="prixPlancher">Prix maximal</label>	<input style='float:right;' type="text" 	name="prixPlancher"/>
-		</br></br><label for="prixDepart">Prix de départ</label>	<input style='float:right;' type="text" 	name="prixDepart"/>
-		</br></br>
+	echo form_open('form/ajouterProduits'); 
+?>
+
+		<input type="hidden" name="codeEtat" value="NC"/>	
+		<input type="hidden" name="datePeche" value="<?php echo strftime('%d %m %Y'); ?>"/> </br></br>
+
+		<label for="poidsBrutLot">Poids brut</label>	<input style='float:right;' type="text" name="poidsBrutLot"/>	</br></br>
+		<label for="prixDepart">Prix de départ</label>	<input style='float:right;' type="text" name="prixDepart"/>		</br></br>
+		<label for="prixPlancher">Prix maximal</label>	<input style='float:right;' type="text" name="prixPlancher"/>	</br></br>
+		
 
 		<label for="immatBateau">Bateau de provenance du lot</label>
 		<select style='float:right;' name="immatBateau">
@@ -55,7 +58,8 @@
 		echo "</select></br></br>";
 		$i=1;
 
-/*		echo '<label for="nomComEspece">Espèce de poisson</label>';
+
+		echo '<label for="nomComEspece">Espèce de poisson</label>';
 		echo "<select style='float:right;' name='nomComEspece'>";
 		foreach ($espece['espece'] as $donnees) 
 		{
@@ -76,7 +80,7 @@
 
 		}
 		echo "</select></br></br>";
-		$i=1;*/
+		$i=1;
 
 
 		/*echo '<label for="nomComEspece">Espèce de poisson</label>';		//METTRE LE NOMBRE DE BACS CONTENUS DANS LE LOT 

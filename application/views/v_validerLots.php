@@ -7,21 +7,20 @@
 
 	else
 	{
-		echo '<h1 style="text-align:center;"> Produits en attente d\'approbation</h1>';
+		echo '<h1 style="text-align:center;"> Lots en attente d\'approbation</h1>';
 
 		echo "<table>
 	     	<tr>
 
-				<th>Numéro de lot</th>
+				<th>Lot n°</th>
 		        <th>Immatriculation bateau</th>
 		        <th>Date de pêche</th>
 		        <th>Poids brut</th>
-		        <th>Prix plancher</th>
 		        <th>Prix de départ</th>
-		        <th>prixEnchereMax</th>
+		        <th>Prix plancher</th>
+		        <th>Espèce</th>
 		        <th>dateEnchere</th>
-		        <th>codeEtat</th>
-		        <th>idPresentation</th>
+		        <th>Présentation</th>
 		        <th>Qualité</th>
 		        <th>Taille</th>
 		        <th>Taille intermédiaire</th>
@@ -34,19 +33,19 @@
 	     	if ($req['codeEtat']=="NC")		//NC = Non Confirmé, l'administrateur n'a pas confirmé le lot, donc les utilisateurs ne le verront pas apparaître pour enchérir dessus
 			{
 		     	echo '<tr>';
-		     	for($i=0;$i<=13;$i++)
+		     	for($i=0;$i<=12;$i++)
 		     	{
-		     		if ($i<13)
+		     		if ($i<12)
 		     		{
 					  	echo '<td>';
 							echo $req[$i];
 					  	echo '</td>';
 		     		}
 
-		     		else if ($i==13)
+		     		else if ($i==12)
 		     		{
 		     			echo validation_errors(); 
-						echo form_open('form/validerProduits');
+						echo form_open('form/validerLots');
 						echo '<td>';
 ?>						<select name="<?php echo $req['idLot'];?>">
 							<option value="1">-</option>

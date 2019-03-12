@@ -12,7 +12,8 @@ USE LaCriee;
 CREATE TABLE ESPECE(
         idEspece       Int  Auto_increment  NOT NULL ,
         nomScienEspece Varchar (50) NOT NULL ,
-        nomComEspece   Varchar (50) NOT NULL
+        nomComEspece   Varchar (50) NOT NULL ,
+        urlImage       Varchar (50) NOT NULL
 	,CONSTRAINT ESPECE_PK PRIMARY KEY (idEspece)
 )ENGINE=InnoDB;
 
@@ -103,7 +104,7 @@ CREATE TABLE PECHE(
 )ENGINE=InnoDB;
 
 
-#------------------------------------------------------------
+/*#------------------------------------------------------------
 # Table: BAC
 #------------------------------------------------------------
 
@@ -118,7 +119,7 @@ CREATE TABLE BAC(
         ,CONSTRAINT BAC_PK PRIMARY KEY (idBac)
 
         ,CONSTRAINT BAC_ESPECE_FK FOREIGN KEY (idEspece) REFERENCES ESPECE(idEspece)
-)ENGINE=InnoDB;
+)ENGINE=InnoDB;*/
 
 
 #------------------------------------------------------------
@@ -131,9 +132,8 @@ CREATE TABLE LOT(
                                                 peut pas connaître la valeur de l'auto-increment qui correspond à l'immatriculation de son bateau ou au numéro du lot qu'il va ajouter dans la base de données*/
         datePeche         Varchar(50) NOT NULL,
         poidsBrutLot      Float NOT NULL ,
-        prixPlancher      DECIMAL (15,3)  NOT NULL ,
-        prixDepart        DECIMAL (15,3)  NOT NULL ,
-        prixEnchereMax    DECIMAL (15,3)  NULL ,
+        prixPlancher      DECIMAL (15,2)  NOT NULL ,
+        prixDepart        DECIMAL (15,2)  NOT NULL ,
         dateEnchere       Date NULL ,
         heureDebutEnchere Varchar(50) NULL ,
         codeEtat          Varchar (50) NULL ,
@@ -143,6 +143,7 @@ CREATE TABLE LOT(
         idTaille          Int NULL ,
         idTailleIntermediaire Int NULL,
         idEspece          Int NULL,
+        nbBacs            Int NULL,
         CONSTRAINT LOT_PK PRIMARY KEY (idLot,idBateau,datePeche)
         ,CONSTRAINT LOT_PECHE_FK FOREIGN KEY (idBateau,datePeche) REFERENCES PECHE(idBateau,datePeche)
         ,CONSTRAINT LOT_PRESENTATION0_FK FOREIGN KEY (idPresentation) REFERENCES PRESENTATION(idPresentation)
@@ -150,6 +151,7 @@ CREATE TABLE LOT(
         ,CONSTRAINT LOT_TAILLE2_FK FOREIGN KEY (idTaille) REFERENCES TAILLE(idTaille)
         ,CONSTRAINT LOT_TAILLEINTERMEDIAIRE_FK FOREIGN KEY (idTailleIntermediaire) REFERENCES TAILLEINTERMEDIAIRE(tailleIntermediaire)
         ,CONSTRAINT LOT_QUALITE3_FK FOREIGN KEY (idQualite) REFERENCES QUALITE(idQualite)
+        ,CONSTRAINT LOT_ESPECE_FK FOREIGN KEY (idEspece) REFERENCES ESPECE(idEspece)
 )ENGINE=InnoDB;
 
 
@@ -197,10 +199,10 @@ CREATE TABLE CONCERNER(
 )ENGINE=InnoDB;
 
 
-ALTER TABLE LOT
+/*ALTER TABLE LOT
 ADD CONSTRAINT LOT_ESPECE_FK
-FOREIGN KEY (idEspece) REFERENCES BAC(idEspece);
+FOREIGN KEY (idEspece) REFERENCES ESPECE(idEspece);
 
 ALTER TABLE BAC
 ADD CONSTRAINT BAC_LOT0_FK 
-FOREIGN KEY (idBateau,datePeche,idLot) REFERENCES LOT(idBateau,datePeche,idLot);
+FOREIGN KEY (idBateau,datePeche,idLot) REFERENCES LOT(idBateau,datePeche,idLot);*/
